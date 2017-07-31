@@ -2,12 +2,15 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func readDataset(path string) {
+	tStart := time.Now()
 	inFile, _ := os.Open(path)
 	defer inFile.Close()
 	scanner := bufio.NewScanner(inFile)
@@ -39,4 +42,8 @@ func readDataset(path string) {
 		}
 		lineNum++
 	}
+	fmt.Print("line num: ")
+	fmt.Println(lineNum)
+	fmt.Print("time elapsed from start: ")
+	fmt.Println(time.Since(tStart))
 }

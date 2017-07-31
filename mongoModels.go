@@ -7,8 +7,8 @@ type CellModel struct {
 	Area          int     `json:"area"`
 	Cell          int     `json:"cell"`
 	Unit          int     `json:"unit"`
-	Lon           float64 `json:"lon"`
 	Lat           float64 `json:"lat"`
+	Lon           float64 `json:"lon"`
 	Range         float64 `json:"range"`
 	Samples       int     `json:"samples"`
 	Changeable    string  `json:"changeable"`

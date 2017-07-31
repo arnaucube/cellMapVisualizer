@@ -23,7 +23,7 @@ func main() {
 	if len(os.Args) > 1 {
 		if os.Args[1] == "-dataset" {
 			color.Blue("starting to read dataset")
-			readDataset("dataModel_head.csv")
+			readDataset("cell_towers.csv")
 			color.Blue("finished reading dataset")
 		}
 	}
