@@ -2,7 +2,7 @@ package main
 
 import (
 	"bufio"
-	"fmt"
+	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -29,6 +29,13 @@ func readDataset(path string) {
 			cell.Unit, _ = strconv.Atoi(line[5])
 			cell.Lon, _ = strconv.ParseFloat(line[6], 64)
 			cell.Lat, _ = strconv.ParseFloat(line[7], 64)
+			var location LocationModel
+			location.Type = "Point"
+			lon, _ := strconv.ParseFloat(line[6], 64)
+			lat, _ := strconv.ParseFloat(line[7], 64)
+			location.Coordinates = append(location.Coordinates, lat)
+			location.Coordinates = append(location.Coordinates, lon)
+			cell.Location = location
 			cell.Range, _ = strconv.ParseFloat(line[8], 64)
 			cell.Samples, _ = strconv.Atoi(line[9])
 			cell.Changeable = line[10]
@@ -42,8 +49,7 @@ func readDataset(path string) {
 		}
 		lineNum++
 	}
-	fmt.Print("line num: ")
-	fmt.Println(lineNum)
-	fmt.Print("time elapsed from start: ")
-	fmt.Println(time.Since(tStart))
+	log.Println("line num: " + strconv.Itoa(lineNum))
+	log.Print("time elapsed from start: ")
+	log.Println(time.Since(tStart))
 }

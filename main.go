@@ -1,12 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
 
-	"github.com/fatih/color"
 	"github.com/gorilla/handlers"
 	mgo "gopkg.in/mgo.v2"
 )
@@ -14,6 +12,8 @@ import (
 var cellCollection *mgo.Collection
 
 func main() {
+	savelog()
+
 	//connect with mongodb
 	readMongodbConfig("./mongodbConfig.json")
 	session, err := getSession()
@@ -22,17 +22,18 @@ func main() {
 
 	if len(os.Args) > 1 {
 		if os.Args[1] == "-dataset" {
-			color.Blue("starting to read dataset")
+			log.Println("starting to read dataset")
 			readDataset("cell_towers.csv")
-			color.Blue("finished reading dataset")
+			//readDataset("dataModel_head.csv")
+			log.Println("finished reading dataset")
 		}
 	}
 
 	//http server start
 	readServerConfig("./serverConfig.json")
-	color.Green("server running")
-	fmt.Print("port: ")
-	color.Green(serverConfig.ServerPort)
+	log.Println("server running")
+	log.Print("port: ")
+	log.Println(serverConfig.ServerPort)
 	router := NewRouter()
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With", "Access-Control-Allow-Origin"})
