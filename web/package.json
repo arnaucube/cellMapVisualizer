@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "bower": "latest",
-	"connect": "latest",
-	"serve-static": "latest"
+    "connect": "latest",
+    "serve-static": "latest"
   }
 }

@@ -10,6 +10,19 @@ angular.module('app.main', ['ngRoute', 'leaflet-directive'])
     }])
 
     .controller('MainCtrl', function($scope, $http, leafletMapEvents) {
+        //get mcc and mnc data
+        $scope.mcc=[];
+        $http.get('mcc-mnc-list.json')
+            .then(function(data) {
+                console.log('data success');
+                console.log(data);
+                $scope.mcc = data.data;
+            }, function(data) {
+                console.log('data error');
+            });
+
+
+
         //map
         $scope.center = {
             lat: 41.38014146592283,
@@ -86,10 +99,21 @@ angular.module('app.main', ['ngRoute', 'leaflet-directive'])
                         icon: markY
                     });
                     for (var i = 0; i < $scope.cells.length; i++) {
+                        /*var company ="";
+                        company = $scope.mcc.filter(function(obj){
+                            return obj.mcc==$scope.cells[i].mcc && obj.mnc == $scope.cells[i].net;
+                        });*/
+                        var company = "";
+                        for(var k in $scope.mcc){
+                            if($scope.mcc[k].mcc==$scope.cells[i].mcc && $scope.mcc[k].mnc == $scope.cells[i].net) {
+                                company = $scope.mcc[k];
+                            }
+                        }
+                        console.log(company);
                         $scope.markers.push({
                             lat: Number($scope.cells[i].lat),
                             lng: Number($scope.cells[i].lon),
-                            message: "lat:" + $scope.cells[i].lat + ", lon:" + $scope.cells[i].lon,
+                            message: "lat:" + $scope.cells[i].lat + ", lon:" + $scope.cells[i].lon +"<br> mcc:"+ $scope.cells[i].mcc + ", mnc:" + $scope.cells[i].net + "<br>" + company.brand,
                             icon: antennaIcon
                         });
                     }
