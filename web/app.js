@@ -1,6 +1,7 @@
 'use strict';
 
-var urlapi = "http://127.0.0.1:3017/";
+//var urlapi = "http://127.0.0.1:3017/";
+var urlapi = "http://51.255.193.106:3017/";
 
 // Declare app level module which depends on views, and components
 angular.module('webApp', [

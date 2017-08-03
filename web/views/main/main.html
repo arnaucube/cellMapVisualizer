@@ -26,12 +26,16 @@
         <div class="col-sm-9">
             <div class="panel">
                 <div class="panel-heading c_blueGrey300">
-                    <h3 class="panel-title">Map</h3>
+                    <h3 class="panel-title">Map - showing {{cells.length}} cells</h3>
                 </div>
                 <div class="panel-body">
-                    <leaflet width="100%" height="600px" markers="markers" paths="paths" center="center" tiles="tiles" id="map-simple-map"></leaflet>
+                    <leaflet width="100%" height="600px" markers="markers" paths="paths" center="center"
+                    tiles="tiles" id="map-simple-map"></leaflet>
                 </div>
             </div>
+            <p><b>Current zoom level: {{center.zoom}}.</b> Due large amount of data, need zoom level equal or greater than 17 to get the cells data.</p>
+            <br>
+            {{status}}
         </div>
     </div>
 </div>
